@@ -3,7 +3,7 @@ import { useAuth0 } from "./react-auth0-spa";
 import Loader from './Loader'
 
 export default function App() {
-  const { isAuthenticated, loginWithRedirect, logout, loading } = useAuth0();
+  const { isAuthenticated, loading, loginWithRedirect, logout, user } = useAuth0();
 
   return loading ? <Loader /> :
   (
@@ -16,7 +16,7 @@ export default function App() {
         }
         {isAuthenticated && 
             <>
-                <p>You are logged.</p>
+                <p>You are logged as {user.nickname} with {user.email} as your email</p>
                 <button onClick={() => logout()}>Log out</button>
             </>
         }
